@@ -4,4 +4,51 @@ body {
 	h1 {
 		color: white;
 	}
+
+    color: #e2e0e0;
+}
+
+.rules {
+    display: none;
+    &.rules--show {
+        display: block;
+    }
+}
+
+.game {
+    .game__prompt {
+        display: none;
+
+        &.game__prompt--show {
+            display: block;
+
+            &.game__prompt--show-ready:after {
+                content: 'Ready?'
+            }
+
+            &.game__prompt--show-1:after {
+                content: '1'
+            }
+
+            &.game__prompt--show-2:after {
+                content: '2'
+            }
+
+            &.game__prompt--show-3:after {
+                content: '3'
+            }
+
+            &.game__prompt--show-go:after {
+                content: 'GO!'
+            }
+        }
+    }
+
+    .game__result {
+        display: none;
+
+        &.game__result--show {
+            display: block;
+        }
+    }
 }
