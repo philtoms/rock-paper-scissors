@@ -47,15 +47,13 @@ describe('actions', () => {
         it('should call action handler for registered values', () => {
             let handled = [];
             actions(fakeHandler).forEach(action => handled.push(action));
-            fakeListener({key: 'H'});
             fakeListener({key: 'S'});
             fakeListener({key: 'D'});
             fakeListener({key: 'R'});
-            fakeListener({key: 'h'});
             fakeListener({key: 's'});
             fakeListener({key: 'd'});
             fakeListener({key: 'r'});
-            expect(handled.length).to.equal(8);
+            expect(handled.length).to.equal(6);
         });
     });
 });
