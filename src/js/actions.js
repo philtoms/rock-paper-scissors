@@ -2,7 +2,9 @@ export const actions = {
     SHOW_RULES: 'rps/SHOW_RULES',
     HIDE_RULES: 'rps/HIDE_RULES',
     DEMO: 'rps/DEMO',
-    START: 'rps/START'
+    START: 'rps/START',
+    RUN: 'rps/RUN',
+    END: 'rps/END'
 };
 
 const keyMap = {
