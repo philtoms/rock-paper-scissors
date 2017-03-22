@@ -24,22 +24,37 @@ export default (state, action) => {
             return {
                 ...state,
                 results: false,
-                start: action.value || 1
+                start: action.value === undefined ? 4 : action.value
             }
 
         case actions.RUN:
             return {
                 history: state.history,
                 game: {
-                    player1: 'computer',
-                    player2: state.demo ? 'computer' : 'user'
+                    player1: {name: 'computer'},
+                    player2: {name: state.demo ? 'computer' : 'user'}
+                }
+            }
+
+        case actions.STRIKE:
+            return {
+                ...state,
+                game: {
+                    ...state.game,
+                    [action.value.player]: {
+                        ...state.game[action.value.player],
+                        strike: action.value.strike
+                    }
                 }
             }
 
         case actions.END:
             return {
                 results: true,
-                history: [...state.history, {...state.game, ...action.value}]
+                history: [...state.history, {
+                    ...state.game,
+                    winner: action.value
+                }]
             }
 
         default:

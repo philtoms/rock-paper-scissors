@@ -27,16 +27,24 @@ describe('reducer', () => {
 
 	it('should generate new game on run', () => {
 		expect(reducer(state, action(actions.RUN)).game).to.deep.equal({
-			player1: 'computer',
-			player2: 'user'
+			player1: {name: 'computer'},
+			player2: {name: 'user'}
 		});
 	});
 
 	it('should pit computer against computer in demo mode', () => {
 		const newState = reducer(state, action(actions.DEMO));
 		expect(reducer(newState, action(actions.RUN)).game).to.deep.equal({
-			player1: 'computer',
-			player2: 'computer'
+			player1: {name: 'computer'},
+			player2: {name: 'computer'}
+		});
+	});
+
+	it('should register player strike', () => {
+		let newState = reducer(state, action(actions.RUN));
+		expect(reducer(newState, action(actions.STRIKE, {player: 'player1', strike: 'pow'})).game).to.deep.equal({
+			player1: {name: 'computer', strike: 'pow'},
+			player2: {name: 'user'}
 		});
 	});
 
@@ -47,10 +55,15 @@ describe('reducer', () => {
 
 	it('should push game results on end game', () => {
 		let newState = reducer(state, action(actions.RUN));
-		newState = reducer(newState, action(actions.END));
+		newState = reducer(newState, action(actions.END, 'player1'));
 		expect(newState.results).to.be.true;
 		expect(newState.game).not.to.be.defined;
 		expect(newState.history.length).to.be.equal(1);
+		expect(newState.history[0]).to.deep.equal({
+			winner: 'player1',
+			player1: {name: 'computer'},
+			player2: {name: 'user'}
+		});
 	});
 
 	it('should reset game on start', () => {

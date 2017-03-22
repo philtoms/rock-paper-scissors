@@ -4,6 +4,7 @@ export const actions = {
     DEMO: 'rps/DEMO',
     START: 'rps/START',
     RUN: 'rps/RUN',
+    STRIKE: 'rps/STRIKE',
     END: 'rps/END'
 };
 
