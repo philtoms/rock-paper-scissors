@@ -6,6 +6,13 @@ let _state;
 let _reduce;
 const _subscribers = [];
 
+const _dispatch = action => {
+    const nextState = _reduce(_state, action);
+    if (nextState !== _state) {
+        _state = nextState;
+        _subscribers.forEach(cb => cb(_state, _dispatch));
+    }
+}
 export default class Store {
     constructor(state, reducer) {
         // No fancy map / reduce (yet)..
@@ -14,11 +21,7 @@ export default class Store {
     }
 
     dispatch(action) {
-        const nextState = _reduce(_state, action);
-        if (nextState !== _state) {
-            _state = nextState;
-            _subscribers.forEach(cb => cb(_state));
-        }
+        return _dispatch(action);
     }
 
     getState() {

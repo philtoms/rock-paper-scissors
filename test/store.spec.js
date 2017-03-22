@@ -41,4 +41,12 @@ describe('store', () => {
 		store.dispatch(action);
 		expect(calledWith).not.to.deep.equal({ value: 123 });
 	});
+
+	it('should pass dispatch to subscribers', () => {
+		const action1 = {type: 'update', value: 123};
+		const action2 = {type: 'don\'t update', value: 345};
+		store.subscribe((newState, dispatch) => dispatch(action2));
+		store.dispatch(action1);
+		expect(calledWith.action).to.deep.equal(action2);
+	});
 });
