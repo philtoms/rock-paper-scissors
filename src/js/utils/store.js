@@ -10,7 +10,7 @@ export default class Store {
     constructor(state, reducer) {
         // No fancy map / reduce (yet)..
         _reduce = reducer;
-        _state = _reduce({...state}, 'store/INIT');
+        _state = _reduce({...state}, {type: 'store/INIT'});
     }
 
     dispatch(action) {
