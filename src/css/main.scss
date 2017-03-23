@@ -1,7 +1,72 @@
 body {
-	background-color: green;
+    font-family: 'Ubuntu', sans-serif;
+}
+
+header {
+    background-color: green;
+    text-align: center;
+    color: white;
+    padding: 10px;
+}
+
+main {
+    width: 50%;
+    min-width: 400px;
+    margin: 0 auto;
+    text-align: center;
 
 	h1 {
 		color: white;
 	}
+
+    color: grey;
+}
+
+.rules {
+    display: none;
+    color: black;
+    width: 280px;
+    margin: 0 auto;
+
+    &.rules--show {
+        display: block;
+    }
+
+    ol {
+    }
+    li {
+        text-align: left
+    }
+}
+
+.game {
+    .game__countdown {
+        display: none;
+        font-size: 100px;
+
+        &.game__countdown--show {
+            display: block;
+        }
+    }
+
+    .game__play {
+        display: none;
+        font-size: 100px;
+
+        &.game__play--show {
+            display: block;
+        }
+    }
+
+    .game__result {
+        display: none;
+
+        h2 {
+            font-size: 50px;
+        }
+
+        &.game__result--show {
+            display: block;
+        }
+    }
 }
