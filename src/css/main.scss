@@ -16,31 +16,19 @@ body {
 }
 
 .game {
-    .game__prompt {
+    .game__countdown {
         display: none;
 
-        &.game__prompt--show {
+        &.game__countdown--show {
             display: block;
+        }
+    }
 
-            &.game__prompt--show-ready:after {
-                content: 'Ready?'
-            }
+    .game__play {
+        display: none;
 
-            &.game__prompt--show-1:after {
-                content: '1'
-            }
-
-            &.game__prompt--show-2:after {
-                content: '2'
-            }
-
-            &.game__prompt--show-3:after {
-                content: '3'
-            }
-
-            &.game__prompt--show-go:after {
-                content: 'GO!'
-            }
+        &.game__play--show {
+            display: block;
         }
     }
 
