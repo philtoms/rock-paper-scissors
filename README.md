@@ -22,7 +22,7 @@ After the count down the play lasts about 1 1/2 seconds. You need to strike with
 
 But the computer is foxy. It's going to play a waiting game. If it holds its nerve and 'sees' your strike before the timeout, its going to win!!
 
-There is nothing stopping you play the same strategy. If you have nerves of steel and whiplash reactions you can beet that computer every time! That at least explains key mappings :)
+There is nothing stopping you playing the same strategy. If you have nerves of steel and whiplash reactions you can beat that computer every time! That at least explains key mappings :)
 
 ### Design rationale
 
