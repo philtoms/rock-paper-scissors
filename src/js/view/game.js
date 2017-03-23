@@ -24,7 +24,7 @@ const winningStrike = results => {
             return `${results.demo ? 'Player 1' : 'Computer'} ran out of time`;
         }
         if (!results.player2.strike) {
-            return `${results.demo ? 'Player 2' : 'You'} ran out of time`;
+            return `${results.demo ? 'Player 2' : 'You'} ran out of time (or hit too soon!)`;
         }
         return rules.by(winner.strike);
     }
@@ -52,7 +52,7 @@ export default (start, game, results) => {
     const result = toggleResult(results);
     if (result) {
         result.innerHTML = `<div>
-            <p>${winningName(results)}</p>
+            <h2>${winningName(results)}</h2>
             <p>${winningStrike(results)}</p>
         </div>`;
     }
