@@ -5,13 +5,23 @@ export const actions = {
     START: 'rps/START',
     RUN: 'rps/RUN',
     STRIKE: 'rps/STRIKE',
-    END: 'rps/END'
+    END: 'rps/END',
+    RESULT: 'rps/RESULT'
 };
 
 const keyMap = {
     R: actions.SHOW_RULES,
     D: actions.DEMO,
-    S: actions.START
+    S: actions.START,
+    B: actions.STRIKE,
+    N: actions.STRIKE,
+    M: actions.STRIKE
+};
+
+const valueMap = {
+    B: 'rock',
+    N: 'paper',
+    M: 'scissors'
 };
 
 // pseudo generator - panic (er temp) code after failing to add generators to this babel setup :(
@@ -20,7 +30,7 @@ const generator = yieldCB => event => {
     const keyName = (event.key || '').toUpperCase();
     // a matching action
     if (Object.keys(keyMap).includes(keyName)) {
-        yieldCB ({type: keyMap[keyName]});
+        yieldCB ({type: keyMap[keyName], value: valueMap[keyName]});
     }
 };
 

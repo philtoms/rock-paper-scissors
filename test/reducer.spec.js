@@ -27,6 +27,7 @@ describe('reducer', () => {
 
 	it('should generate new game on run', () => {
 		expect(reducer(state, action(actions.RUN)).game).to.deep.equal({
+			demo: undefined,
 			player1: {name: 'computer'},
 			player2: {name: 'user'}
 		});
@@ -35,14 +36,18 @@ describe('reducer', () => {
 	it('should pit computer against computer in demo mode', () => {
 		const newState = reducer(state, action(actions.DEMO));
 		expect(reducer(newState, action(actions.RUN)).game).to.deep.equal({
-			player1: {name: 'computer'},
-			player2: {name: 'computer'}
+			demo: true,
+			player1: {name: 'player 1'},
+			player2: {name: 'player 2'}
 		});
 	});
 
 	it('should register player strike', () => {
 		let newState = reducer(state, action(actions.RUN));
 		expect(reducer(newState, action(actions.STRIKE, {player: 'player1', strike: 'pow'})).game).to.deep.equal({
+			demo: undefined,
+			firstStrike: 'pow',
+			secondStrike: undefined,
 			player1: {name: 'computer', strike: 'pow'},
 			player2: {name: 'user'}
 		});
@@ -53,16 +58,25 @@ describe('reducer', () => {
 		expect(reducer(state, action(actions.RUN)).history).to.be.equal(state.history);
 	});
 
-	it('should push game results on end game', () => {
+	it('should set end game', () => {
 		let newState = reducer(state, action(actions.RUN));
 		newState = reducer(newState, action(actions.END, 'player1'));
-		expect(newState.results).to.be.true;
+		expect(newState.endGame).to.be.defined;
 		expect(newState.game).not.to.be.defined;
-		expect(newState.history.length).to.be.equal(1);
-		expect(newState.history[0]).to.deep.equal({
-			winner: 'player1',
-			player1: {name: 'computer'},
-			player2: {name: 'user'}
+	});
+
+
+	it('should push game results to history', () => {
+		state.endGame = {player1: 'user'};
+		expect(reducer(state, action(actions.RESULT, 'player1'))).to.deep.equal({
+			results: {
+				player1: 'user',
+				winner: 'player1'
+			},
+			history: [{
+				player1: 'user',
+				winner: 'player1'
+			}]
 		});
 	});
 
@@ -70,7 +84,7 @@ describe('reducer', () => {
 		let newState = reducer(state, action(actions.RUN));
 		newState = reducer(newState, action(actions.END));
 		newState = reducer(newState, action(actions.START));
-		expect(newState.results).to.be.false;
+		expect(newState.results).not.to.be.defined;
 		expect(newState.game).to.be.defined;
 	});
 });
