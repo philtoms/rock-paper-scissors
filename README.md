@@ -8,7 +8,7 @@ A version of the game in which the user is pitted against a very spry computer.
 - D = run a demo (computer against computer)
 - R = show the rules (yes rules - we all need boundaries!)
 
-# Playing the game
+## Playing the game
 
 After starting a new game, wait for the count down and STRIKE!!
 
@@ -23,6 +23,12 @@ After the count down the play lasts about 1 1/2 seconds. You need to strike with
 But the computer is foxy. It's going to play a waiting game. If it holds its nerve and 'sees' your strike before the timeout, its going to win!!
 
 There is nothing stopping you play the same strategy. If you have nerves of steel and whiplash reactions you can beet that computer every time! That at least explains key mappings :)
+
+### Design rationale
+
+- state driven (redux reducer pattern)
+- modularised - eg game engine broken down into extensible components
+- model / view separation
 
 ### Install
 
